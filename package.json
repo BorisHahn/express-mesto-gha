@@ -1,0 +1,14 @@
+{
+  "name": "express-mesto-gha",
+  "author": "bs-gaidukevich",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "react-scripts start",
+    "lint": "npx eslint ."
+  },
+  "devDependencies": {
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.2"
+  }
+}
