@@ -1,16 +1,16 @@
-const express = require("express");
-const mongoose = require("mongoose");
+const express = require('express');
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const userRouter = require('./routes/user');
 const cardRouter = require('./routes/card');
 
-const { PORT = 3000, MONGO_URL = "mongodb://localhost:27017/mestodb"} = process.env;
+const { PORT = 3000, MONGO_URL = 'mongodb://localhost:27017/mestodb' } = process.env;
 
 const app = express();
 app.use(bodyParser.json());
 app.use((req, res, next) => {
   req.user = {
-    _id: '63447a7973eceb3c5159d515'
+    _id: '63447a7973eceb3c5159d515',
   };
   next();
 });
