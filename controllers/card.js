@@ -33,7 +33,16 @@ module.exports.deleteCard = (req, res) => {
       }
       res.send({ data: card });
     })
-    .catch((err) => res.status(500).send({ message: 'Произошла ошибка', err }));
+    .catch((err) => {
+      if (err.name === 'CastError') {
+        res.status(400).send({
+          message: 'Переданы некорректные данные для удаления карточки',
+          err,
+        });
+        return;
+      }
+      res.status(500).send({ message: 'Произошла ошибка', err });
+    });
 };
 
 module.exports.likeCard = (req, res) => {
@@ -69,14 +78,14 @@ module.exports.dislikeCard = (req, res) => {
   )
     .then((card) => {
       if (!card) {
-        res.status(400).send({ message: 'Передан несуществующий id карточки' });
+        res.status(404).send({ message: 'Передан несуществующий id карточки' });
         return;
       }
       res.send({ data: card });
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        res.status(404).send({
+        res.status(400).send({
           message: 'Переданы некорректные данные для снятия лайка',
           err,
         });
