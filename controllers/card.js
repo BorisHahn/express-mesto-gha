@@ -69,14 +69,14 @@ module.exports.dislikeCard = (req, res) => {
   )
     .then((card) => {
       if (!card) {
-        res.status(404).send({ message: 'Передан несуществующий id карточки' });
+        res.status(400).send({ message: 'Передан несуществующий id карточки' });
         return;
       }
       res.send({ data: card });
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        res.status(400).send({
+        res.status(404).send({
           message: 'Переданы некорректные данные для снятия лайка',
           err,
         });
