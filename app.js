@@ -19,6 +19,9 @@ mongoose.connect(MONGO_URL);
 
 app.use('/users', userRouter);
 app.use('/cards', cardRouter);
+app.use('*', (_, res) => {
+  res.status(404).send({ message: 'Ресурс не найден. Проверьте URL и метод запроса' });
+});
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
