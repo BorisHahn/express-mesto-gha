@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const userRouter = require('./routes/user');
 const cardRouter = require('./routes/card');
 const { notFound } = require('./utils/errors');
+const { login, createUser } = require('./routes/user');
 
 const { PORT = 3000, MONGO_URL = 'mongodb://localhost:27017/mestodb' } = process.env;
 
@@ -24,6 +25,9 @@ app.use('/cards', cardRouter);
 app.use('*', (req, res) => {
   res.status(notFound).send({ message: 'Ресурс не найден. Проверьте URL и метод запроса' });
 });
+
+app.post('/signin', login);
+app.post('/signup', createUser);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);

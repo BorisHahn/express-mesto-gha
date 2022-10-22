@@ -112,7 +112,7 @@ module.exports.editAvatar = (req, res) => {
 
 module.exports.login = (req, res) => {
   const { email, password } = req.body;
-  User.findUser({ email, password })
+  User.findOne({ email, password })
     .then((user) => {
       const token = jwt.sign(
         { _id: user._id },
