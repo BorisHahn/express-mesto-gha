@@ -1,6 +1,6 @@
 const Card = require('../models/card');
 const {
-  created, badRequest, notFound, internalServerError,
+  created, badRequest, notFound, internalServerError, forbiddenError,
 } = require('../utils/errors');
 
 module.exports.getCards = (req, res) => {
@@ -31,6 +31,12 @@ module.exports.deleteCard = (req, res) => {
         res
           .status(notFound)
           .send({ message: 'Карточка с указанным id не найдена.' });
+        return;
+      }
+      if (card.owner._id !== req.user._id) {
+        res
+          .status(forbiddenError)
+          .send({ message: 'Чужие карточки удалению не подлежат.' });
         return;
       }
       res.send({ data: card });

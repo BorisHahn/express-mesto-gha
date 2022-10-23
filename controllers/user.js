@@ -112,7 +112,7 @@ module.exports.editAvatar = (req, res) => {
 
 module.exports.login = (req, res) => {
   const { email, password } = req.body;
-  User.findOne({ email, password })
+  User.findUser({ email, password })
     .then((user) => {
       const token = jwt.sign(
         { _id: user._id },
@@ -123,12 +123,21 @@ module.exports.login = (req, res) => {
         .cookie('jwt', token, {
           maxAge: 3600000 * 24 * 7,
           httpOnly: true,
-        })
-        .end();
+        });
     })
     .catch((err) => {
       res
         .status(401)
         .send({ message: err.message });
+    });
+};
+
+module.exports.getProfileInfo = (req, res) => {
+  User.findOne({ _id: req.user._id })
+    .then((user) => res.send(user))
+    .catch(() => {
+      res.status(notFound).send({
+        message: 'Запрашиваемый пользователь не найден',
+      });
     });
 };
