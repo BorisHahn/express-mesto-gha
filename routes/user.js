@@ -6,11 +6,16 @@ const {
   editAvatar,
   getProfileInfo,
 } = require('../controllers/user');
+const {
+  validGetByIdData,
+  validEditUserData,
+  validEditAvatarData,
+} = require('../utils/validation/validUserData');
 
-userRouter.get('/', getUsers);
+userRouter.get('/', validGetByIdData, getUsers);
 userRouter.get('/me', getProfileInfo);
 userRouter.get('/:userId', getUserById);
-userRouter.patch('/me', editUser);
-userRouter.patch('/me/avatar', editAvatar);
+userRouter.patch('/me', validEditUserData, editUser);
+userRouter.patch('/me/avatar', validEditAvatarData, editAvatar);
 
 module.exports = userRouter;
