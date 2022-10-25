@@ -102,7 +102,7 @@ module.exports.editAvatar = (req, res, next) => {
 
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
-  User.findUser({ email, password })
+  return User.findUser(email, password)
     .then((user) => {
       const token = jwt.sign(
         { _id: user._id },
@@ -113,7 +113,8 @@ module.exports.login = (req, res, next) => {
         .cookie('jwt', token, {
           maxAge: 3600000 * 24 * 7,
           httpOnly: true,
-        });
+        })
+        .send({ email });
     })
     .catch((err) => {
       next(new UnauthorizedError(err.message));
