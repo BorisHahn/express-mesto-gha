@@ -3,7 +3,7 @@ const { URL_REG } = require('../const');
 
 module.exports.validGetByIdData = celebrate({
   params: Joi.object().keys({
-    id: Joi.string().required().alphanum().length(24),
+    userId: Joi.string().required().alphanum().length(24),
   }),
 });
 

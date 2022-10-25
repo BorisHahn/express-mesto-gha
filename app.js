@@ -1,6 +1,7 @@
 const express = require('express');
 require('dotenv').config();
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 const bodyParser = require('body-parser');
 const userRouter = require('./routes/user');
@@ -15,7 +16,7 @@ const { PORT = 3000, MONGO_URL = 'mongodb://localhost:27017/mestodb' } = process
 
 const app = express();
 app.use(bodyParser.json());
-
+app.use(cookieParser());
 mongoose.connect(MONGO_URL);
 
 // роуты, не требующие авторизации

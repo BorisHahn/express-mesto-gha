@@ -12,9 +12,9 @@ const {
   validEditAvatarData,
 } = require('../utils/validation/validUserData');
 
-userRouter.get('/', validGetByIdData, getUsers);
+userRouter.get('/', getUsers);
 userRouter.get('/me', getProfileInfo);
-userRouter.get('/:userId', getUserById);
+userRouter.get('/:userId', validGetByIdData, getUserById);
 userRouter.patch('/me', validEditUserData, editUser);
 userRouter.patch('/me/avatar', validEditAvatarData, editAvatar);
 
