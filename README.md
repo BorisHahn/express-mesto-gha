@@ -1,4 +1,4 @@
-[![Tests](https://github.com/BorisHahn/express-mesto-gha/actions/workflows/tests-13-sprint.yml/badge.svg)](https://github.com/BorisHahn/express-mesto-gha/actions/runs/3244692020) [![Tests](https://github.com/yandex-praktikum/express-mesto-gha/actions/workflows/tests-14-sprint.yml/badge.svg)](https://github.com/BorisHahn/express-mesto-gha/actions/runs/3324445687)
+[![Tests](https://github.com/BorisHahn/express-mesto-gha/actions/workflows/tests-13-sprint.yml/badge.svg)](https://github.com/BorisHahn/express-mesto-gha/actions/runs/3244692020) [![Tests](https://github.com/yandex-praktikum/express-mesto-gha/actions/workflows/tests-14-sprint.yml/badge.svg)](https://github.com/BorisHahn/express-mesto-gha/actions/workflows/tests-14-sprint.yml)
 # Проект Mesto фронтенд + бэкенд
 
 
