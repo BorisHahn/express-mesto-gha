@@ -1,11 +1,7 @@
 class ConflctError extends Error {
   constructor(message) {
     super(message);
-    this.status = 409;
-  }
-
-  statusCode() {
-    return this.status;
+    this.statusCode = 409;
   }
 }
 module.exports = ConflctError;
