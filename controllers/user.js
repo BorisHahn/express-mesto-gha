@@ -124,7 +124,7 @@ module.exports.login = (req, res, next) => {
 module.exports.getProfileInfo = (req, res, next) => {
   User.findOne({ _id: req.user._id })
     .then((user) => res.send(user))
-    .catch(() => {
-      next(new NotFoundError('Запрашиваемый пользователь не найден'));
+    .catch((err) => {
+      next(err);
     });
 };

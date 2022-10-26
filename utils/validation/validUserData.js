@@ -3,7 +3,7 @@ const { URL_REG } = require('../const');
 
 module.exports.validGetByIdData = celebrate({
   params: Joi.object().keys({
-    userId: Joi.string().required().alphanum().length(24),
+    userId: Joi.string().length(24).hex().required(),
   }),
 });
 
@@ -13,7 +13,7 @@ module.exports.validRegData = celebrate({
     about: Joi.string().min(2).max(30),
     avatar: Joi.string().pattern(URL_REG),
     email: Joi.string().required().email(),
-    password: Joi.string().required().min(8),
+    password: Joi.string().required(),
   }),
 });
 
@@ -33,6 +33,6 @@ module.exports.validEditAvatarData = celebrate({
 module.exports.validLoginData = celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
-    password: Joi.string().required().min(8),
+    password: Joi.string().required(),
   }),
 });

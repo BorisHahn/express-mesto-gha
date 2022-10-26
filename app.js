@@ -26,8 +26,10 @@ app.post('/signup', validRegData, createUser);
 // роуты, которым авторизация нужна
 app.use('/users', auth, userRouter);
 app.use('/cards', auth, cardRouter);
-
-app.use('*', (req, res, next) => {
+app.get('/signout', (req, res) => {
+  res.clearCookie('jwt').send({ message: 'Выход' });
+});
+app.use('*', auth, (req, res, next) => {
   next(new NotFoundError('Ресурс не найден. Проверьте URL и метод запроса'));
 });
 
