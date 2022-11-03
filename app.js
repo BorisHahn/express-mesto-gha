@@ -11,6 +11,7 @@ const { login, createUser } = require('./controllers/user');
 const { validRegData, validLoginData } = require('./utils/validation/validUserData');
 const auth = require('./middlewares/auth');
 const errorSetter = require('./middlewares/errorSetter');
+const cors = require('./middlewares/cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000, MONGO_URL = 'mongodb://localhost:27017/mestodb' } = process.env;
@@ -20,6 +21,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 mongoose.connect(MONGO_URL);
 app.use(requestLogger);
+app.use(cors);
 
 // роуты, не требующие авторизации
 app.post('/signin', validLoginData, login);
